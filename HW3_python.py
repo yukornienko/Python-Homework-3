@@ -63,35 +63,33 @@ class Kmer_spectrum:
     def genome_length(self, cut):
         for i in self.kmers_list:
             if i[0] >= cut:
-                self.L += i[0]*i[1]/self.k
+                self.L += i[0]*i[1]/( 201 - self.k + 1) # 201 - средняя длина ридов
         return(self.L)
 
 # In[133]:
 
 
 with open ("/Users/yukornienko/Downloads/test_kmer.fastq") as fastq:
-    kmers = Kmer_spectrum(12, 35)
+    kmers = Kmer_spectrum(15, 38)
     kmers_dict = kmers.dict_all_kmers(fastq)
     kmers_list = kmers.list_kmers()
     print(kmers_list)
-    kmers.visualise([1, 200], [0, 100000])
+    kmers.visualise([1, 150], [0, 100000])
     
 # In[134]:
 
-L = kmers.genome_length(30)
+L = kmers.genome_length(18)
 print(L)
 
 # In[151]:
 
 with open ("/Users/yukornienko/Downloads/test_kmer.fastq") as fastq:
-    kmers_2 = Kmer_spectrum(14, 1)
+    kmers_2 = Kmer_spectrum(1, 1)
     kmers_dict_2 = kmers_2.dict_all_kmers(fastq)
     kmers_list_2 = kmers_2.list_kmers()
+    kmers_2.visualise([1, 400], [0, 150000])
 
-    
-# In[160]:
-kmers_2.visualise([1, 400], [0, 150000])
-
+   
 # In[161]:
 L = kmers_2.genome_length(40)
 print(L)
