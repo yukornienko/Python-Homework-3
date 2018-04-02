@@ -8,7 +8,6 @@ from Bio import SeqIO
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.interpolate import spline
 
 
 class Kmer_spectrum:
