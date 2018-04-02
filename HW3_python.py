@@ -67,11 +67,6 @@ class Kmer_spectrum:
                 self.L += i[0]*i[1]/self.k
         return(self.L)
 
-        
-
-    
-
-
 # In[133]:
 
 
@@ -80,13 +75,25 @@ with open ("/Users/yukornienko/Downloads/test_kmer.fastq") as fastq:
     kmers_dict = kmers.dict_all_kmers(fastq)
     kmers_list = kmers.list_kmers()
     print(kmers_list)
-    kmers.visualise([1, 80], [0, 100000])
+    kmers.visualise([1, 150], [0, 100000])
     
-
-
 # In[134]:
 
+L = kmers.genome_length(30)
+print(L)
 
-L = kmers.genome_length(12)
+# In[151]:
+
+with open ("/Users/yukornienko/Downloads/test_kmer.fastq") as fastq:
+    kmers_2 = Kmer_spectrum(14, 1)
+    kmers_dict_2 = kmers_2.dict_all_kmers(fastq)
+    kmers_list_2 = kmers_2.list_kmers()
+
+    
+# In[160]:
+kmers_2.visualise([1, 400], [0, 150000])
+
+# In[161]:
+L = kmers_2.genome_length(40)
 print(L)
 
