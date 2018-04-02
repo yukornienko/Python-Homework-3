@@ -75,7 +75,7 @@ with open ("/Users/yukornienko/Downloads/test_kmer.fastq") as fastq:
     kmers_dict = kmers.dict_all_kmers(fastq)
     kmers_list = kmers.list_kmers()
     print(kmers_list)
-    kmers.visualise([1, 150], [0, 100000])
+    kmers.visualise([1, 200], [0, 100000])
     
 # In[134]:
 
