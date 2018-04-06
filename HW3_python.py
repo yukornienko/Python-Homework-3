@@ -3,7 +3,6 @@
 
 # In[132]:
 
-
 from Bio import SeqIO 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -61,10 +60,17 @@ class Kmer_spectrum:
         plt.show()
 
     def genome_length(self, cut):
+        max_x = 0
+        max_y = 0
+        for i in self.kmers_list:
+            if i[0] >= cut and i[1] > max_y:
+                max_y = i[1]
+                max_x = i[0]
         for i in self.kmers_list:
             if i[0] >= cut:
-                self.L += i[0]*i[1]/( 201 - self.k + 1) # 201 - средняя длина ридов
+                self.L += i[0]*i[1]/max_x
         return(self.L)
+        self.L = 0
 
 # In[133]:
 
@@ -78,19 +84,19 @@ with open ("/Users/yukornienko/Downloads/test_kmer.fastq") as fastq:
     
 # In[134]:
 
-L = kmers.genome_length(18)
+L = kmers.genome_length(20)
 print(L)
 
 # In[151]:
 
 with open ("/Users/yukornienko/Downloads/test_kmer.fastq") as fastq:
-    kmers_2 = Kmer_spectrum(1, 1)
+    kmers_2 = Kmer_spectrum(15, 1)
     kmers_dict_2 = kmers_2.dict_all_kmers(fastq)
     kmers_list_2 = kmers_2.list_kmers()
     kmers_2.visualise([1, 400], [0, 150000])
 
    
 # In[161]:
-L = kmers_2.genome_length(40)
+L = kmers_2.genome_length(55)
 print(L)
 
